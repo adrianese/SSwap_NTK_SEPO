@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SimpleSwap DApp</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SimpleSwap DApp</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>SimpleSwap DApp</h1>
+  <div class="container">
+    <h1>SimpleSwap DApp</h1>
 
-        <div id="wallet-status" class="status-message">
-            <p>Wallet Not Connected</p>
-            <button id="connect-wallet-btn">Connect Wallet</button>
-        </div>
-
-        <div id="app-content" style="display: none;">
-            <p>Connected Account: <span id="account-address"></span></p>
-
-            <hr>
-
-            <h2>Your Balances</h2>
-            <p>Token A (<span id="tokenA-symbol"></span>): <span id="user-balance-A">0</span></p>
-            <p>Token B (<span id="tokenB-symbol"></span>): <span id="user-balance-B">0</span></p>
-
-            <hr>
-            <button id="mint-mock-btn">Recargar Tokens</button>
-            
-            <hr>
-            <h2>Swap Tokens</h2>
-            <div class="swap-section">
-                <input type="number" id="swap-input-amount" placeholder="Amount" min="0">
-                <select id="swap-from-token">
-                    <option value="A">Token A</option>
-                    <option value="B">Token B</option>
-                </select>
-                <button id="swap-button">Swap</button>
-            </div>
-            <p id="swap-status" class="status-message"></p>
-            <p>You will receive: <span id="expected-output">0</span></p>
-
-            <hr>
-
-            <h2>Get Price</h2>
-            <div class="price-section">
-                <input type="number" id="price-input-amount" placeholder="Amount" min="0">
-                <select id="price-from-token">
-                    <option value="A">Token A</option>
-                    <option value="B">Token B</option>
-                </select>
-                <button id="get-price-button">Get Price</button>
-            </div>
-            <p>Current Price: <span id="current-price">N/A</span></p>
-        </div>
+    <div id="wallet-status" class="status-message">
+      <p>Wallet Not Connected</p>
+      <button id="connect-wallet-btn">Connect Wallet</button>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.15.0/ethers.umd.min.js"></script>
-    <script src="app.js"></script>
-    
+
+    <div id="app-content" style="display: none;">
+      <p>Connected Account: <span id="account-address"></span></p>
+
+      <hr />
+      <button id="refresh-balances-btn">Consult Token Balances</button>
+      <p>Token A Balance: <span id="token-a-balance">0</span></p>
+      <p>Token B Balance: <span id="token-b-balance">0</span></p>
+
+      <hr />
+      <h2>Your Balances</h2>
+      <p>Token A (<span id="tokenA-symbol"></span>): <span id="user-balance-A">0</span></p>
+      <p>Token B (<span id="tokenB-symbol"></span>): <span id="user-balance-B">0</span></p>
+
+      <hr />
+      <button id="mint-mock-btn">Recargar Tokens</button>
+
+      <hr />
+      <h2>Swap Tokens</h2>
+      <div class="swap-section">
+        <input type="number" id="swap-input-amount" placeholder="Amount" min="0" />
+        <select id="swap-from-token">
+          <option value="A">Token A</option>
+          <option value="B">Token B</option>
+        </select>
+        <button id="swap-button">Swap</button>
+      </div>
+      <p id="swap-status" class="status-message"></p>
+      <p>You will receive: <span id="expected-output">0</span></p>
+
+      <hr />
+      <h2>Get Price</h2>
+      <div class="price-section">
+        <input type="number" id="price-input-amount" placeholder="Amount" min="0" />
+        <select id="price-from-token">
+          <option value="A">Token A</option>
+          <option value="B">Token B</option>
+        </select>
+        <button id="get-price-button">Get Price</button>
+      </div>
+      <p>Current Price: <span id="current-price">N/A</span></p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.15.0/ethers.umd.min.js"></script>
+  <script src="app2.js"></script>
 </body>
 </html>

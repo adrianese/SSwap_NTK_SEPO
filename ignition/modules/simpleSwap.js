@@ -8,5 +8,5 @@ const SimpleSwapModule = buildModule("SimpleSwapModule", (m) => {
 module.exports = SimpleSwapModule;
 
 
-//npx hardhat ignition deploy ignition/modules/simpleSwap.js
+//npx hardhat ignition deploy ignition/modules/SimpleSwap.js
 
