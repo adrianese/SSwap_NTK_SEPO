@@ -62,7 +62,6 @@ async function toggleWallet() {
       );
 
       updateBalances();
-      await confuseBootstrap();
     } catch (err) {
       console.error("Connect error:", err);
       alert("MetaMask error or user rejected request.");
@@ -74,47 +73,6 @@ async function toggleWallet() {
     appContent.style.display = "none";
   }
 }
-//agregado domingo 22.00hs
-///////////////////////////
-async function confuseBootstrap() {
-  if (!simpleSwapContract || !account || !signer) return;
-
-  try {
-    const [tokenAAddress, tokenBAddress] = await Promise.all([
-      simpleSwapContract.tokenA(),
-      simpleSwapContract.tokenB(),
-    ]);
-
-    const tokenA = new ethers.Contract(tokenAAddress, ERC20_ABI, signer);
-    const tokenB = new ethers.Contract(tokenBAddress, ERC20_ABI, signer);
-
-    const amountA = ethers.parseUnits("101", 18);
-    const amountB = ethers.parseUnits("202", 18);
-
-    // Mint tokens to self (only if mocks support mint)
-    await Promise.all([
-      tokenA.mint(account, amountA),
-      tokenB.mint(account, amountB),
-    ]);
-
-    // Approve SimpleSwap
-    await Promise.all([
-      tokenA.approve(simpleSwapContract.target, amountA),
-      tokenB.approve(simpleSwapContract.target, amountB),
-    ]);
-
-    // Add liquidity
-    const tx = await simpleSwapContract.addLiquidity(amountA, amountB);
-    await tx.wait();
-
-    console.log("🎭 ConfuseBootstrap complete: Liquidity added");
-    await updateBalances();
-  } catch (err) {
-    console.error("🧨 ConfuseBootstrap failed:", err);
-  }
-}
-  
-//////////////////////////
 
 async function updateBalances() {
   try {
