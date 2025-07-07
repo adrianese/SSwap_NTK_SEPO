@@ -83,7 +83,15 @@ async function updateBalances() {
 
     const tokenA = new ethers.Contract(tokenAAddr, ERC20_ABI, provider);
     const tokenB = new ethers.Contract(tokenBAddr, ERC20_ABI, provider);
-
+    try {
+      const symbolA = await tokenA.symbol();
+      const symbolB = await tokenB.symbol();
+      const decimalsA = await tokenA.decimals();
+      const decimalsB = await tokenB.decimals();
+    } catch (err) {
+      console.warn("TokenA decoding failed:", err);
+    }
+    
     const [balA, balB, decA, decB, symA, symB] = await Promise.all([
       tokenA.balanceOf(account),
       tokenB.balanceOf(account),
@@ -91,6 +99,8 @@ async function updateBalances() {
       tokenB.decimals(),
       tokenA.symbol(),
       tokenB.symbol(),
+   
+     
     ]);
 
     tokenASymbolSpan.textContent = symA;
@@ -137,8 +147,11 @@ async function handleSwap() {
 
 async function updateExpectedOutput() {
   try {
+    if (!swapInputAmount.value || isNaN(swapInputAmount.value)) return;
     const amountIn = ethers.parseUnits(swapInputAmount.value, 18);
     const selected = swapFromTokenSelect.value;
+
+
 
     const reserveIn =
       selected === "A"
@@ -149,7 +162,10 @@ async function updateExpectedOutput() {
       selected === "A"
         ? await simpleSwapContract.reserveB()
         : await simpleSwapContract.reserveA();
-
+        if (amountIn === 0n) {
+          expectedOutputSpan.textContent = "0";
+          return;
+        }
     const output = await simpleSwapContract.getAmountOut(
       amountIn,
       reserveIn,
