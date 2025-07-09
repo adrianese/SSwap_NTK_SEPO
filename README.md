@@ -1,3 +1,7 @@
+
+# SimpleSwap Web Page: Can connect to wallet, get balances, prices and swap: https://sswapeth.netlify.app/
+
+
 # SimpleSwap (Sepolia Test)
 
 This repository contains an experimental implementation of a basic token swap smart contract and frontend integration. It's designed for educational purposes and testnet deployment using Sepolia.
