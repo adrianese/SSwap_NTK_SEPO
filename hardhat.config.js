@@ -4,6 +4,8 @@ require("@nomicfoundation/hardhat-toolbox");
 const { vars } = require("hardhat/config");
 //procesamos .env
 require("dotenv").config();
+require("solidity-coverage");
+
 
 const INFURA_NODE = process.env.INFURA_NODE;
 const MY_PRIV_KEY = process.env.MY_PRIV_KEY;
